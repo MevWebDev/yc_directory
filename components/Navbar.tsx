@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 async function Navbar() {
   const session = await auth();
+  const publicAvatarUrl = `https://avatars.githubusercontent.com/u/${session?.id}`;
 
   return (
     <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
@@ -35,7 +36,7 @@ async function Navbar() {
               <Link href={`/user/${session?.id}`}>
                 <Avatar className="size-10">
                   <AvatarImage
-                    src={session?.user?.image || ""}
+                    src={publicAvatarUrl || ""}
                     alt={session?.user?.name || ""}
                   />
                   <AvatarFallback>AV</AvatarFallback>
