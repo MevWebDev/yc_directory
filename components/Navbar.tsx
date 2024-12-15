@@ -3,10 +3,19 @@ import Image from "next/image";
 import { auth, signOut, signIn } from "@/auth";
 import { BadgePlus, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { client } from "@/sanity/lib/client";
+import { AUTHOR_BY_GITHUB_ID_QUERY } from "@/sanity/lib/queries";
 
 async function Navbar() {
   const session = await auth();
-  const publicAvatarUrl = `https://avatars.githubusercontent.com/u/${session?.id}`;
+  console.log(session);
+  let user = null;
+  let publicAvatarUrl = "";
+
+  if (session && session.id) {
+    user = await client.fetch(AUTHOR_BY_GITHUB_ID_QUERY, { id: session.id });
+    publicAvatarUrl = `https://avatars.githubusercontent.com/u/${user.image}`;
+  }
 
   return (
     <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
