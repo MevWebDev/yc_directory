@@ -4,17 +4,18 @@ import { auth, signOut, signIn } from "@/auth";
 import { BadgePlus, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { client } from "@/sanity/lib/client";
-import { AUTHOR_BY_GITHUB_ID_QUERY } from "@/sanity/lib/queries";
+import { AUTHOR_BY_ID_QUERY } from "@/sanity/lib/queries";
 
 async function Navbar() {
   const session = await auth();
-  console.log(session);
+
   let user = null;
   let publicAvatarUrl = "";
 
   if (session && session.id) {
-    user = await client.fetch(AUTHOR_BY_GITHUB_ID_QUERY, { id: session.id });
-    publicAvatarUrl = `https://avatars.githubusercontent.com/u/${user.image}`;
+    user = await client.fetch(AUTHOR_BY_ID_QUERY, { id: session.id });
+
+    publicAvatarUrl = `https://avatars.githubusercontent.com/u/${user.id}`;
   }
 
   return (
