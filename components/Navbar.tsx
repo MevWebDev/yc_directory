@@ -32,7 +32,7 @@ async function Navbar() {
                 </button>
               </form>
 
-              <Link href={`/user/${session?.user.id}`}>
+              <Link href={`/user/${session?.id}`}>
                 <Avatar className="size-10">
                   <AvatarImage
                     src={session?.user?.image || ""}
@@ -52,14 +52,6 @@ async function Navbar() {
               >
                 <button type="submit">Login via github</button>
               </form>
-              {/* <form
-                action={async () => {
-                  "use server";
-                  await signIn("google");
-                }}
-              >
-                <button type="submit">Login via google</button>
-              </form> */}
             </>
           )}
         </div>
