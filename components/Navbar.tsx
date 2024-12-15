@@ -24,12 +24,12 @@ async function Navbar() {
         <Link href="/">
           <Image src="/logo.png" alt="Logo" width={144} height={30} />
         </Link>
-        <div className="flex items-center gap-5 text-black">
+        <div className="flex items-center  gap-5 text-black">
           {session && session?.user ? (
             <>
               <Link href="/startup/create">
                 <span className="max-sm:hidden">Create</span>
-                <BadgePlus className="size-6 sm:hidden" />
+                <BadgePlus className="size-6 sm:hidden  " />
               </Link>
               <form
                 action={async () => {
@@ -37,9 +37,9 @@ async function Navbar() {
                   await signOut({ redirectTo: "/" });
                 }}
               >
-                <button type="submit">
+                <button type="submit" className="flex">
                   <span className="max-sm:hidden">Logout</span>
-                  <LogOut className="size-6 sm:hidden text-red-500" />
+                  <LogOut className="size-6 sm:hidden text-red-500 " />
                 </button>
               </form>
 
